@@ -1,23 +1,23 @@
 {
   "title": "ZenRay SFX",
   "eyebrow": "Son, reproduction et édition",
-  "date": "25 October 2026",
+  "date": "26 October 2026",
   "subtitle": "zenray-sfx",
-  "status": "Version du 25 October 2026, générée depuis SKILL.md",
+  "status": "Version du 26 October 2026, générée depuis SKILL.md",
   "lead": "Logiciel local qui reproduit des effets sonores sous forme de recette, les décrit en texte et les modifie par composants nommés, sans modèle d'IA. Cet article est généré depuis le skill à chaque consignation.",
   "hero": "hero",
   "heroAlt": "Trois spectrogrammes du son Denied : la référence, la reproduction depuis la recette, puis la retouche sémantique plus lourde.",
   "heroText": "Un même son vu trois fois : la référence, sa reproduction depuis la recette, puis une retouche par composant.",
   "heroCaption": "Spectrogrammes mel sur la même échelle, son Denied de Death Stranding.",
   "sources": "Sources.json",
-  "footer": "ZenRay SFX · 25 October 2026 · SKILL.md 6b807aa73d82",
+  "footer": "ZenRay SFX · 26 October 2026 · SKILL.md fb4187938dde",
   "fileLabels": {
     "hero": "Trois spectrogrammes du son Denied : la référence, la reproduction depuis la recette, puis la retouche sémantique plus lourde."
   },
   "fileRoles": {
     "hero": "Image d’ouverture."
   },
-  "skillSha256": "6b807aa73d8277952cd2a387c783197b570e3d7b65d628dd11fde83d9e7ff988",
+  "skillSha256": "fb4187938dde1767f78308a82546fb4738b32a579878cb40ae4400716ff2f1b7",
   "sections": [
     {
       "id": "s01",
@@ -67,6 +67,13 @@
       "title": "26 October 2026 : l'édition sémantique",
       "nav": "26 October 2026 : l'édition sémantique",
       "html": "<ul><li>Onglet « Éditer » de l'app : chaque son reproduit est découpé en composants nommés (Attaque, Corps grave, Souffle ou Queue de souffle, Tons et Glissandos), chacun avec Niveau, Hauteur, Attaque, Queue, Brillance, Matière (bois à métal), Moment, Couper, Solo et Zéro ; l'écart au son d'origine est affiché en dB et en mots (imperceptible, subtil, franc) ; « Enregistrer la version » écrit <code style=\"overflow-wrap:anywhere\">out/semantic/&lt;son&gt;/V_###.json</code> et <code style=\"overflow-wrap:anywhere\">.wav</code>. (26 October 2026)</li><li>Code : <code style=\"overflow-wrap:anywhere\">zrsfx/semantic.py</code> ; paramètres : <code style=\"overflow-wrap:anywhere\">params/semantic.json</code> ; retouches de démonstration : <code style=\"overflow-wrap:anywhere\">params/semantic-demo.json</code>. Méthode, mesures, pièges : <code style=\"overflow-wrap:anywhere\">docs/METHOD.md</code>, section du 26 October 2026. (26 October 2026)</li><li>Preuves à relancer après toute modification de <code style=\"overflow-wrap:anywhere\">semantic.py</code> : <code style=\"overflow-wrap:anywhere\">Scripts/CheckSemantic.py \"out/repro-03/*.recipe.json\"</code> (identité), <code style=\"overflow-wrap:anywhere\">Scripts/CheckSliders.py \"out/repro-03/*.recipe.json\"</code> (vert : 0 échec) puis <code style=\"overflow-wrap:anywhere\">Scripts/CheckSliders.py out/repro-03/12-Denied.recipe.json --red</code> (rouge : doit échouer), puis la preuve d'écoute <code style=\"overflow-wrap:anywhere\">Scripts/SemanticDemo.py</code>, envoyée à Matthieu. (26 October 2026)</li><li>Règle : les trois étages (paramétrique, procédural, sémantique) sont définis dans <code style=\"overflow-wrap:anywhere\">rules/ParametricHda1.md</code>, section du 25 October 2026 ; un son livré n'est complet qu'avec son interface sémantique. (26 October 2026)</li></ul>"
+    },
+    {
+      "id": "s08",
+      "eyebrow": "08 / 26 October 2026 : ce que le film Sony puis PlayStation (rythmes D, E, F) a ",
+      "title": "26 October 2026 : ce que le film Sony puis PlayStation (rythmes D, E, F) a appris",
+      "nav": "26 October 2026 : ce que le film Sony pu",
+      "html": "<ul><li>26 October 2026 : un son reproduit peut avoir 99,23 de score et GRÉSILLER : l'enveloppe fine du bruit (une courbe toutes les 2,5 ms ajustée sur la référence) découpe un bruit neuf en salves. Mesure : <code style=\"overflow-wrap:anywhere\">Scripts/CrackleIndex.py</code> (référence propre 1,49, ancienne reproduction 3,18) ; correctif par défaut dans <code style=\"overflow-wrap:anywhere\">Reproduce.py --env-ms 90</code> (<code style=\"overflow-wrap:anywhere\">zrsfx/crackle.py</code>, lissage de l'enveloppe), 97,94 de score pour 1,47 de grésillement. Ne jamais livrer un son sans passer l'indice. (26 October 2026)</li><li>26 October 2026 : étirer un son de pluie ou de bruit donne « les enfers » ; pour du doux et classe, partir de tons purs (<code style=\"overflow-wrap:anywhere\">Scripts/DesignRhythmD5.py</code>) ou de la référence elle-même (<code style=\"overflow-wrap:anywhere\">DesignRhythmD7.py</code>), sans rien ajouter. Matthieu juge « propre » ce qui est la référence ou un ton pur. (26 October 2026)</li><li>26 October 2026 : mixer = NORMALISER CHAQUE ENTRÉE d'abord à la même sonie, puis fusionner (<code style=\"overflow-wrap:anywhere\">Scripts/Assemble6s.py</code>, <code style=\"overflow-wrap:anywhere\">AssembleNote.py</code>, <code style=\"overflow-wrap:anywhere\">AssembleTrack.py</code>), puis masteriser par un gain pur et un limiteur doux sur les seuls pics (<code style=\"overflow-wrap:anywhere\">AssembleFinal.py</code> : <code style=\"overflow-wrap:anywhere\">loudnorm</code> écrasait tout). Un limiteur à anticipation retarde le son (239 échantillons) : le retard se mesure par corrélation et se supprime. Chaque script a son contrôle vert et rouge. (26 October 2026)</li><li>26 October 2026 : les sons se rendent dans la Galerie SFX (<code style=\"overflow-wrap:anywhere\">/motion/gallery-sfx</code> de l'app Motion) et se posent dans un film par la piste Sons (voir le skill zenray-motion-design) ; ne jamais enchaîner un long travail sans livrer le fichier demandé (Matthieu : « donne-moi directement les sons »). (26 October 2026)</li></ul>"
     }
   ],
   "theme": "papier"

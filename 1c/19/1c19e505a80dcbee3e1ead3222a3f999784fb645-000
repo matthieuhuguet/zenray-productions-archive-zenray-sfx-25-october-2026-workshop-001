@@ -1,0 +1,80 @@
+{
+  "title": "ZenRay SFX",
+  "eyebrow": "Son, reproduction et édition",
+  "date": "26 October 2026",
+  "subtitle": "zenray-sfx",
+  "status": "Version du 26 October 2026, générée depuis SKILL.md",
+  "lead": "Logiciel local qui reproduit des effets sonores sous forme de recette, les décrit en texte et les modifie par composants nommés, sans modèle d'IA. Cet article est généré depuis le skill à chaque consignation.",
+  "hero": "hero",
+  "heroAlt": "Trois spectrogrammes du son Denied : la référence, la reproduction depuis la recette, puis la retouche sémantique plus lourde.",
+  "heroText": "Un même son vu trois fois : la référence, sa reproduction depuis la recette, puis une retouche par composant.",
+  "heroCaption": "Spectrogrammes mel sur la même échelle, son Denied de Death Stranding.",
+  "sources": "Sources.json",
+  "footer": "ZenRay SFX · 26 October 2026 · SKILL.md fb4187938dde",
+  "fileLabels": {
+    "hero": "Trois spectrogrammes du son Denied : la référence, la reproduction depuis la recette, puis la retouche sémantique plus lourde."
+  },
+  "fileRoles": {
+    "hero": "Image d’ouverture."
+  },
+  "skillSha256": "fb4187938dde1767f78308a82546fb4738b32a579878cb40ae4400716ff2f1b7",
+  "sections": [
+    {
+      "id": "s01",
+      "eyebrow": "01 / Ce que fait ZenRay SFX",
+      "title": "Ce que fait ZenRay SFX (26 October 2026)",
+      "nav": "Ce que fait ZenRay SFX",
+      "html": "<ul><li>ZenRay SFX reproduit et modifie des effets sonores sans modèle d'IA et sans service payant. Le calcul tourne en local en Python (numpy, torch pour l'ajustement). (26 October 2026)</li><li>Étape 1, reproduction : un son de référence devient une recette, c'est-à-dire des nombres lisibles (partiels, grille de souffle, portes de niveau) qui ne contiennent aucun échantillon de la référence. La recette est rendue à nouveau à chaque écoute. (26 October 2026)</li><li>Étape 2, texte : la recette s'écrit en texte court (16 lignes, le caractère du son) ou en texte long (226 à 293 lignes, l'identité du son). Les deux textes se relisent et se rendent sans perte de format. (26 October 2026)</li><li>Étape 3, édition sémantique : chaque son reproduit est découpé en composants nommés (Attaque, Corps grave, Souffle, Tons). Chaque composant a ses curseurs (niveau, hauteur, attaque, queue, brillance, matière, moment). Tous les curseurs à zéro rendent le son d'origine. (26 October 2026)</li><li>Étape 4, création sans référence : une description en mots choisit des archétypes (loquet, grincement, choc de bois, poussière) et produit trois propositions. Leur qualité n'est pas mesurée, faute de son de référence. (26 October 2026)</li><li>Les trois étages paramétrique, procédural et sémantique sont définis dans <code style=\"overflow-wrap:anywhere\">/Users/zenray/.claude/rules/ParametricHda1.md</code>, section du 25 October 2026. (26 October 2026)</li></ul>"
+    },
+    {
+      "id": "s02",
+      "eyebrow": "02 / Résultats mesurés au 26 October 2026",
+      "title": "Résultats mesurés au 26 October 2026",
+      "nav": "Résultats mesurés au 26 October 2026",
+      "html": "<div style=\"overflow-x:auto;max-width:100%\"><table><tr><th>Mesure</th><th>Résultat</th><th>Méthode de mesure</th></tr><tr><td>Reproduction, six sons Death Stranding</td><td>99,35 de moyenne, 6 sur 6 au plafond d'identité</td><td>perte perceptive invariante, graines de bruit jamais vues pendant l'ajustement</td></tr><tr><td>Texte court, 16 lignes</td><td>82 à 94, moyenne 89,0</td><td>même mesure, texte relu puis rendu</td></tr><tr><td>Texte long</td><td>identique au bit près</td><td>comparaison des échantillons rendus</td></tr><tr><td>Son sale (souffle, pièce, MP3)</td><td>98,39 contre l'original propre</td><td><code style=\"overflow-wrap:anywhere\">Scripts/CleanTest.py</code></td></tr><tr><td>Édition sémantique, curseurs à zéro</td><td>écart de 10⁻¹⁶ avec la recette</td><td><code style=\"overflow-wrap:anywhere\">Scripts/CheckSemantic.py</code></td></tr><tr><td>Continuité et effet de chaque curseur</td><td>0 échec sur six sons ; 28 échecs sur une version cassée exprès</td><td><code style=\"overflow-wrap:anywhere\">Scripts/CheckSliders.py</code>, vert puis <code style=\"overflow-wrap:anywhere\">--red</code></td></tr><tr><td>Écoute de Matthieu</td><td>non vérifiée</td><td>pages <code style=\"overflow-wrap:anywhere\">out/listen-01</code> et <code style=\"overflow-wrap:anywhere\">out/semantic-demo-01</code></td></tr></table></div>"
+    },
+    {
+      "id": "s03",
+      "eyebrow": "03 / Les commandes",
+      "title": "Les commandes (25 October 2026)",
+      "nav": "Les commandes",
+      "html": "<ul><li>App locale : <code style=\"overflow-wrap:anywhere\">python3 Scripts/App.py</code>, http://127.0.0.1:3120, ou <code style=\"overflow-wrap:anywhere\">preview_start</code> <code style=\"overflow-wrap:anywhere\">zenray-sfx</code> (launch.json de Memory1). (25 October 2026)</li><li>Reproduire à l'identique : <code style=\"overflow-wrap:anywhere\">/usr/bin/python3 Scripts/Reproduce.py \"refs/*.wav\" --run &lt;run&gt;</code> (analyse P256G32aEM, polissage 150 pas, juge sur graines 7, 8, 9, plafond). Environ 50 s par son. (25 October 2026)</li><li>Texte d'un son : <code style=\"overflow-wrap:anywhere\">/usr/bin/python3 Scripts/FitBrief.py \"refs/*.wav\" --events 16 --gens 20 --run &lt;run&gt;</code> (poursuite), environ 3 à 6 min par son. (25 October 2026)</li><li>Son sale : <code style=\"overflow-wrap:anywhere\">zrsfx.clean.clean(x, sr)</code> avant <code style=\"overflow-wrap:anywhere\">Reproduce</code>; preuve <code style=\"overflow-wrap:anywhere\">Scripts/CleanTest.py</code>. (25 October 2026)</li><li>Depuis une description : onglet « Depuis un texte » (scènes et archétypes dans <code style=\"overflow-wrap:anywhere\">params/</code>). (25 October 2026)</li><li>Python : <code style=\"overflow-wrap:anywhere\">/usr/bin/python3</code> (torch, librosa, scipy). Le juge importe la perte perceptive de <code style=\"overflow-wrap:anywhere\">ZenRayMotionDesign/zrmd/audio/ploss.py</code>. (25 October 2026)</li></ul>"
+    },
+    {
+      "id": "s04",
+      "eyebrow": "04 / Les règles payées",
+      "title": "Les règles payées (25 October 2026)",
+      "nav": "Les règles payées",
+      "html": "<ul><li>Juger toujours sur des graines de bruit jamais vues pendant l'ajustement, sinon on apprend le tirage (99,2 vu contre 97,2 neuf). (25 October 2026)</li><li>La porte est le plafond d'identité de la recette (écart ≤ 0,3), pas un 99 fixe : une recette contre elle-même plafonne entre 97,4 et 99,5. (25 October 2026)</li><li>Une note seule ne suffit pas : regarder la planche (<code style=\"overflow-wrap:anywhere\">Scripts/CompareSheet.py</code>) ; la note invariante disait 98 pendant que les lignes tonales étaient floues. Lire aussi lignes, excès et souffle. (25 October 2026)</li><li>Ne jamais laisser le polissage déplacer les fréquences des partiels : il détruit les lignes. (25 October 2026)</li><li>Une enveloppe fine non lissée recopie le bruit de la référence ; la porte maîtresse n'a le droit que d'atténuer, au-delà de 3 dB, avec un filtre médian. (25 October 2026)</li><li>Un test de dégradation doit être réaliste et se mesurer dégradation par dégradation : la première « petite pièce » avait une queue 8 dB au-dessus du son direct et faisait à elle seule 35,9. (25 October 2026)</li><li>Les archétypes s'écrivent depuis la pratique du sound design, jamais depuis l'audio d'un jeu ; pour un son précis de jeu, demander un extrait et le reproduire. (25 October 2026)</li></ul>"
+    },
+    {
+      "id": "s05",
+      "eyebrow": "05 / État mesuré au 25 October 2026",
+      "title": "État mesuré au 25 October 2026 (25 October 2026)",
+      "nav": "État mesuré au 25 October 2026",
+      "html": "<p>Recette d'identité : 99,35 de moyenne invariante sur six sons Death Stranding, 6 sur 6 au plafond, lignes pondérées 75, excès 0,19 %, environ 4 300 nombres par son. Texte de 16 lignes (environ 150 nombres) : 82 à 92, le caractère mais pas l'identité. Résultats : <code style=\"overflow-wrap:anywhere\">out/repro-03</code>, <code style=\"overflow-wrap:anywhere\">out/brief-05</code>, <code style=\"overflow-wrap:anywhere\">out/clean-02</code> du dépôt. (25 October 2026)</p>"
+    },
+    {
+      "id": "s06",
+      "eyebrow": "06 / 25 October 2026 : la preuve d'écoute, obligatoire à chaque boucle de debug",
+      "title": "25 October 2026 : la preuve d'écoute, obligatoire à chaque boucle de debug",
+      "nav": "25 October 2026 : la preuve d'écoute, ob",
+      "html": "<ul><li>Mots de Matthieu (25 October 2026), grammaire seule : « démontre-moi d'abord que la reproduction sonore était parfaite avec les sons de Death Stranding ; je compare chaque son et ensuite je te donne mon verdict. J'aimais bien le fait que tu me donnes aussi sur une sheet les deux images sonores pour avoir une signature visuelle. Consigne aussi cette instruction pour le debug de ZenRay SFX. » (25 October 2026)</li><li>Règle (25 October 2026) : toute itération de ZenRay SFX qui change un son se termine par la preuve d'écoute, AVANT d'annoncer un résultat : <code style=\"overflow-wrap:anywhere\">/usr/bin/python3 Scripts/ListenSheet.py --run out/&lt;run&gt; --out out/listen-&lt;NN&gt;</code>. Elle produit <code style=\"overflow-wrap:anywhere\">listen.html</code> (page autonome, référence et reproduction côte à côte, niveaux intacts, test à l'aveugle, verdicts Parfait / Presque / Différent, bouton « Copier mes verdicts ») et <code style=\"overflow-wrap:anywhere\">signatures.png</code> (les deux spectrogrammes de chaque son, même échelle). Les deux s'envoient à Matthieu par SendUserFile ; la page se lit aussi sur http://127.0.0.1:3120/listen/listen-&lt;NN&gt;. (25 October 2026)</li><li>Le verdict de Matthieu à l'oreille fait foi sur la note ; un son jugé « Presque » ou « Différent » rouvre la boucle sur la cause qu'il nomme. Ne jamais déclarer une reproduction parfaite sans son verdict. (25 October 2026)</li></ul>"
+    },
+    {
+      "id": "s07",
+      "eyebrow": "07 / 26 October 2026 : l'édition sémantique",
+      "title": "26 October 2026 : l'édition sémantique",
+      "nav": "26 October 2026 : l'édition sémantique",
+      "html": "<ul><li>Onglet « Éditer » de l'app : chaque son reproduit est découpé en composants nommés (Attaque, Corps grave, Souffle ou Queue de souffle, Tons et Glissandos), chacun avec Niveau, Hauteur, Attaque, Queue, Brillance, Matière (bois à métal), Moment, Couper, Solo et Zéro ; l'écart au son d'origine est affiché en dB et en mots (imperceptible, subtil, franc) ; « Enregistrer la version » écrit <code style=\"overflow-wrap:anywhere\">out/semantic/&lt;son&gt;/V_###.json</code> et <code style=\"overflow-wrap:anywhere\">.wav</code>. (26 October 2026)</li><li>Code : <code style=\"overflow-wrap:anywhere\">zrsfx/semantic.py</code> ; paramètres : <code style=\"overflow-wrap:anywhere\">params/semantic.json</code> ; retouches de démonstration : <code style=\"overflow-wrap:anywhere\">params/semantic-demo.json</code>. Méthode, mesures, pièges : <code style=\"overflow-wrap:anywhere\">docs/METHOD.md</code>, section du 26 October 2026. (26 October 2026)</li><li>Preuves à relancer après toute modification de <code style=\"overflow-wrap:anywhere\">semantic.py</code> : <code style=\"overflow-wrap:anywhere\">Scripts/CheckSemantic.py \"out/repro-03/*.recipe.json\"</code> (identité), <code style=\"overflow-wrap:anywhere\">Scripts/CheckSliders.py \"out/repro-03/*.recipe.json\"</code> (vert : 0 échec) puis <code style=\"overflow-wrap:anywhere\">Scripts/CheckSliders.py out/repro-03/12-Denied.recipe.json --red</code> (rouge : doit échouer), puis la preuve d'écoute <code style=\"overflow-wrap:anywhere\">Scripts/SemanticDemo.py</code>, envoyée à Matthieu. (26 October 2026)</li><li>Règle : les trois étages (paramétrique, procédural, sémantique) sont définis dans <code style=\"overflow-wrap:anywhere\">rules/ParametricHda1.md</code>, section du 25 October 2026 ; un son livré n'est complet qu'avec son interface sémantique. (26 October 2026)</li></ul>"
+    },
+    {
+      "id": "s08",
+      "eyebrow": "08 / 26 October 2026 : ce que le film Sony puis PlayStation (rythmes D, E, F) a ",
+      "title": "26 October 2026 : ce que le film Sony puis PlayStation (rythmes D, E, F) a appris",
+      "nav": "26 October 2026 : ce que le film Sony pu",
+      "html": "<ul><li>26 October 2026 : un son reproduit peut avoir 99,23 de score et GRÉSILLER : l'enveloppe fine du bruit (une courbe toutes les 2,5 ms ajustée sur la référence) découpe un bruit neuf en salves. Mesure : <code style=\"overflow-wrap:anywhere\">Scripts/CrackleIndex.py</code> (référence propre 1,49, ancienne reproduction 3,18) ; correctif par défaut dans <code style=\"overflow-wrap:anywhere\">Reproduce.py --env-ms 90</code> (<code style=\"overflow-wrap:anywhere\">zrsfx/crackle.py</code>, lissage de l'enveloppe), 97,94 de score pour 1,47 de grésillement. Ne jamais livrer un son sans passer l'indice. (26 October 2026)</li><li>26 October 2026 : étirer un son de pluie ou de bruit donne « les enfers » ; pour du doux et classe, partir de tons purs (<code style=\"overflow-wrap:anywhere\">Scripts/DesignRhythmD5.py</code>) ou de la référence elle-même (<code style=\"overflow-wrap:anywhere\">DesignRhythmD7.py</code>), sans rien ajouter. Matthieu juge « propre » ce qui est la référence ou un ton pur. (26 October 2026)</li><li>26 October 2026 : mixer = NORMALISER CHAQUE ENTRÉE d'abord à la même sonie, puis fusionner (<code style=\"overflow-wrap:anywhere\">Scripts/Assemble6s.py</code>, <code style=\"overflow-wrap:anywhere\">AssembleNote.py</code>, <code style=\"overflow-wrap:anywhere\">AssembleTrack.py</code>), puis masteriser par un gain pur et un limiteur doux sur les seuls pics (<code style=\"overflow-wrap:anywhere\">AssembleFinal.py</code> : <code style=\"overflow-wrap:anywhere\">loudnorm</code> écrasait tout). Un limiteur à anticipation retarde le son (239 échantillons) : le retard se mesure par corrélation et se supprime. Chaque script a son contrôle vert et rouge. (26 October 2026)</li><li>26 October 2026 : les sons se rendent dans la Galerie SFX (<code style=\"overflow-wrap:anywhere\">/motion/gallery-sfx</code> de l'app Motion) et se posent dans un film par la piste Sons (voir le skill zenray-motion-design) ; ne jamais enchaîner un long travail sans livrer le fichier demandé (Matthieu : « donne-moi directement les sons »). (26 October 2026)</li></ul>"
+    }
+  ],
+  "theme": "papier"
+}
